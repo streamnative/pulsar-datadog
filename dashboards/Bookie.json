@@ -1,0 +1,1062 @@
+{
+  "title": "Pulsar - Bookie",
+  "description": "",
+  "widgets": [
+    {
+      "id": 0,
+      "definition": {
+        "type": "image",
+        "url": "https://bookkeeper.apache.org/img/logos/bk-logo.png",
+        "sizing": "fit"
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 19,
+        "height": 7
+      }
+    },
+    {
+      "id": 1,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_ledgers_count{$bookie}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Ledgers",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 20,
+        "width": 19,
+        "height": 12
+      }
+    },
+    {
+      "id": 2,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_ACTIVE_ENTRY_LOG_COUNT{$bookie}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Active entry log",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 44,
+        "width": 19,
+        "height": 12
+      }
+    },
+    {
+      "id": 3,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_ACTIVE_ENTRY_LOG_SPACE_BYTES{$bookie}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Entry log space",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 2
+      },
+      "layout": {
+        "x": -1,
+        "y": 56,
+        "width": 19,
+        "height": 13
+      }
+    },
+    {
+      "id": 4,
+      "definition": {
+        "type": "note",
+        "content": "Entry Metrics",
+        "background_color": "green",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 20,
+        "y": 0,
+        "width": 88,
+        "height": 7
+      }
+    },
+    {
+      "id": 5,
+      "definition": {
+        "type": "note",
+        "content": "Journal Metrics",
+        "background_color": "orange",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 20,
+        "y": 43,
+        "width": 88,
+        "height": 7
+      }
+    },
+    {
+      "id": 6,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_ACTIVE_LEDGER_COUNT{$bookie}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Active Ledgers",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 32,
+        "width": 19,
+        "height": 12
+      }
+    },
+    {
+      "id": 7,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_entries_count{$bookie}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Entries",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 8,
+        "width": 19,
+        "height": 12
+      }
+    },
+    {
+      "id": 8,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_add_entry.count{$bookie}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_add_entry.count{$bookie}",
+                "alias_name": "add"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.bookie_read_entry.count{$bookie}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_read_entry.count{$bookie}",
+                "alias_name": "read"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Entry Rate",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 7,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 9,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_WRITE_BYTES{$bookie}.as_rate()",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_WRITE_BYTES{$bookie}.as_rate()",
+                "alias_name": "write"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.bookie_READ_BYTES{$bookie}.as_rate()",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_READ_BYTES{$bookie}.as_rate()",
+                "alias_name": "read"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Entry Throughput",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 64,
+        "y": 7,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 10,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.bookie_BOOKIE_ADD_ENTRY.quantile{success:true,$bookie} by {quantile}",
+            "metadata": [
+              {
+                "expression": "max:pulsar.bookie_BOOKIE_ADD_ENTRY.quantile{success:true,$bookie} by {quantile}",
+                "alias_name": "add entry"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Add Entry Latency",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 25,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 11,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.bookie_BOOKIE_READ_ENTRY.quantile{success:true,$bookie} by {quantile}",
+            "metadata": [
+              {
+                "expression": "max:pulsar.bookie_BOOKIE_READ_ENTRY.quantile{success:true,$bookie} by {quantile}",
+                "alias_name": "read entry"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Entry Read Latency",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 64,
+        "y": 25,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 12,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_journal_JOURNAL_ADD_ENTRY.count{$bookie}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_journal_JOURNAL_ADD_ENTRY.count{$bookie}",
+                "alias_name": "add entry"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.bookie_journal_JOURNAL_SYNC.sum{$bookie}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_journal_JOURNAL_SYNC.sum{$bookie}",
+                "alias_name": "sync"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Journal rate",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true
+      },
+      "layout": {
+        "x": 20,
+        "y": 50,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 13,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "per_second(sum:pulsar.bookie_journal_JOURNAL_WRITE_BYTES{$bookie}.as_count())",
+            "metadata": [
+              {
+                "expression": "per_second(sum:pulsar.bookie_journal_JOURNAL_WRITE_BYTES{$bookie}.as_count())",
+                "alias_name": "write"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Journal throughput",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 64,
+        "y": 50,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 14,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.bookie_journal_JOURNAL_ADD_ENTRY.quantile{success:true,$bookie} by {quantile}",
+            "metadata": [
+              {
+                "expression": "max:pulsar.bookie_journal_JOURNAL_ADD_ENTRY.quantile{success:true,$bookie} by {quantile}",
+                "alias_name": "add entry latency"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Add entry latency",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 68,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 15,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.bookie_journal_JOURNAL_SYNC.quantile{success:true,$bookie} by {quantile}",
+            "metadata": [
+              {
+                "expression": "max:pulsar.bookie_journal_JOURNAL_SYNC.quantile{success:true,$bookie} by {quantile}",
+                "alias_name": "sync latency"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Sync latency",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 64,
+        "y": 68,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 16,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.bookie_journal_JOURNAL_CREATION_LATENCY.quantile{success:true,$bookie} by {quantile}",
+            "metadata": [
+              {
+                "expression": "max:pulsar.bookie_journal_JOURNAL_CREATION_LATENCY.quantile{success:true,$bookie} by {quantile}",
+                "alias_name": "journal create latency"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Journal creation latency",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 86,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 17,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.bookie_journal_JOURNAL_FLUSH_LATENCY.quantile{success:true,$bookie} by {quantile}",
+            "metadata": [
+              {
+                "expression": "max:pulsar.bookie_journal_JOURNAL_FLUSH_LATENCY.quantile{success:true,$bookie} by {quantile}",
+                "alias_name": "flush latency"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Flush latency",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 64,
+        "y": 86,
+        "width": 44,
+        "height": 18
+      }
+    },
+    {
+      "id": 18,
+      "definition": {
+        "type": "note",
+        "content": "Compaction",
+        "background_color": "vivid_orange",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 109,
+        "y": 0,
+        "width": 88,
+        "height": 7
+      }
+    },
+    {
+      "id": 19,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_MAJOR_COMPACTION_COUNT{$bookie}.as_count()",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_MAJOR_COMPACTION_COUNT{$bookie}.as_count()",
+                "alias_name": "major compaction"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.bookie_MINOR_COMPACTION_COUNT{$bookie}.as_count()",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_MINOR_COMPACTION_COUNT{$bookie}.as_count()",
+                "alias_name": "minor compaction"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Compaction",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 109,
+        "y": 7,
+        "width": 44,
+        "height": 19
+      }
+    },
+    {
+      "id": 20,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.bookie_RECLAIMED_COMPACTION_SPACE_BYTES{$bookie}.as_count()",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.bookie_RECLAIMED_COMPACTION_SPACE_BYTES{$bookie}.as_count()",
+                "alias_name": "reclaimed space"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Reclaimed space",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 153,
+        "y": 7,
+        "width": 44,
+        "height": 19
+      }
+    },
+    {
+      "id": 21,
+      "definition": {
+        "type": "note",
+        "content": "JVM Metrics",
+        "background_color": "pink",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": true,
+        "tick_pos": "50%",
+        "tick_edge": "bottom"
+      },
+      "layout": {
+        "x": 109,
+        "y": 26,
+        "width": 88,
+        "height": 7
+      }
+    },
+    {
+      "id": 22,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_max{area:heap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_init{area:heap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_used{area:heap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_committed{area:heap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Heap memory",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 109,
+        "y": 33,
+        "width": 44,
+        "height": 20
+      }
+    },
+    {
+      "id": 23,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_max{area:nonheap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_init{area:nonheap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_used{area:nonheap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_committed{area:nonheap,$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Non-Heap memory",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 153,
+        "y": 33,
+        "width": 44,
+        "height": 20
+      }
+    },
+    {
+      "id": 24,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_threads_peak{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_daemon{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_current{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_deadlocked{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_started_total{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_deadlocked_monitor{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Threads",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 109,
+        "y": 74,
+        "width": 44,
+        "height": 21
+      }
+    },
+    {
+      "id": 25,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "per_minute(sum:broker.jvm_gc_collection_seconds.sum{$bookie} by {gc})",
+            "metadata": [
+              {
+                "expression": "per_minute(sum:broker.jvm_gc_collection_seconds.sum{$broker} by {gc})",
+                "alias_name": "gc time"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "GC",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 153,
+        "y": 53,
+        "width": 44,
+        "height": 21
+      }
+    },
+    {
+      "id": 26,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_memory_direct_bytes_max{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_direct_bytes_used{$bookie}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Direct memory",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 109,
+        "y": 53,
+        "width": 44,
+        "height": 20
+      }
+    }
+  ],
+  "template_variables": [
+    {
+      "name": "bookie",
+      "default": "*",
+      "prefix": "pulsar-bookie"
+    }
+  ],
+  "layout_type": "free",
+  "is_read_only": false,
+  "notify_list": [],
+  "id": "6ck-pbn-9xw"
+}

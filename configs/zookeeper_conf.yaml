@@ -1,0 +1,36 @@
+init_config:
+
+instances:
+  - prometheus_url: http://127.0.0.1:8000/metrics
+    namespace: "pulsar"
+    metrics:
+      - _*
+    health_service_check: true
+    prometheus_timeout: 1000
+    max_returned_metrics: 1000000
+    type_overrides:
+      jvm_memory_bytes_used: gauge
+      jvm_memory_bytes_committed: gauge
+      jvm_memory_bytes_max: gauge
+      jvm_memory_bytes_init: gauge
+      jvm_memory_pool_bytes_used: gauge
+      jvm_memory_pool_bytes_committed: gauge
+      jvm_memory_pool_bytes_max: gauge
+      jvm_memory_pool_bytes_init: gauge
+      jvm_classes_loaded: gauge
+      jvm_classes_loaded_total: counter
+      jvm_classes_unloaded_total: counter
+      jvm_buffer_pool_used_bytes: gauge
+      jvm_buffer_pool_capacity_bytes: gauge
+      jvm_buffer_pool_used_buffers: gauge
+      jvm_threads_current: gauge
+      jvm_threads_daemon: gauge
+      jvm_threads_peak: gauge
+      jvm_threads_started_total: counter
+      jvm_threads_deadlocked: gauge
+      jvm_threads_deadlocked_monitor: gauge
+      jvm_gc_collection_seconds_count: gauge
+      jvm_gc_collection_seconds_sum: gauge
+      jvm_memory_direct_bytes_max: gauge
+    tags:
+      - pulsar-zookeeper:<your-zookeeper-id>

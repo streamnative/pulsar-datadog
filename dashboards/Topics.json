@@ -1,0 +1,678 @@
+{
+  "title": "Pulsar - Topics",
+  "description": "",
+  "widgets": [
+    {
+      "id": 0,
+      "definition": {
+        "type": "image",
+        "url": "http://pulsar.apache.org/img/pulsar.svg",
+        "sizing": "fit",
+        "margin": "small"
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 19,
+        "height": 7
+      }
+    },
+    {
+      "id": 1,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_subscriptions_count{$Topic,$Cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Subscriptions",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 2
+      },
+      "layout": {
+        "x": 0,
+        "y": 7,
+        "width": 19,
+        "height": 13
+      }
+    },
+    {
+      "id": 2,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_producers_count{$Topic,$Cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Producers",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 20,
+        "width": 19,
+        "height": 13
+      }
+    },
+    {
+      "id": 3,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_producers_count{$Topic,$Cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Consumers",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 33,
+        "width": 19,
+        "height": 13
+      }
+    },
+    {
+      "id": 4,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_msg_backlog{$Topic,$Cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Backlogs",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 46,
+        "width": 19,
+        "height": 13
+      }
+    },
+    {
+      "id": 5,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_storage_size{$Topic,$Cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Storage Size",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 2
+      },
+      "layout": {
+        "x": 0,
+        "y": 59,
+        "width": 19,
+        "height": 13
+      }
+    },
+    {
+      "id": 6,
+      "definition": {
+        "type": "note",
+        "content": "Topic Metrics",
+        "background_color": "purple",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 20,
+        "y": 0,
+        "width": 100,
+        "height": 7
+      }
+    },
+    {
+      "id": 7,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_rate_in{$Topic,$Cluster} by {cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Message Rate In(msg/s)",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 7,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 8,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_rate_out{$Topic,$Cluster} by {cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Message Rate Out(msg/s)",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 70,
+        "y": 7,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 9,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_throughput_in{$Topic,$Cluster} by {cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Throughput in",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 29,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 10,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_throughput_out{$Topic,$Cluster} by {cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Throughput out",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 70,
+        "y": 29,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 11,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_subscription_back_log{$Topic,$Cluster} by {cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Backlogs",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 70,
+        "y": 51,
+        "width": 50,
+        "height": 21
+      }
+    },
+    {
+      "id": 12,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_5{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_10{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_20{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_50{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_100{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_200{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_1000{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_overflow{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_0_5{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_1{$Topic,$Cluster}",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Storage Write",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 0,
+        "y": 73,
+        "width": 40,
+        "height": 22
+      }
+    },
+    {
+      "id": 13,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_storage_size{$Topic,$Cluster} by {cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Storage Size",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 40,
+        "y": 73,
+        "width": 40,
+        "height": 22
+      }
+    },
+    {
+      "id": 14,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_128{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_128{*}",
+                "alias_name": "0 - 128"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_512{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_512{*}",
+                "alias_name": "128 - 512"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_1_kb{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_1_kb{*}",
+                "alias_name": "512 - 1kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_2_kb{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_2_kb{*}",
+                "alias_name": "1kb - 2kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_4_kb{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_4_kb{*}",
+                "alias_name": "2kb - 4kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_16_kb{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_16_kb{*}",
+                "alias_name": "4kb - 16kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_100_kb{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_100_kb{*}",
+                "alias_name": "16kb - 100kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_overflow{$Topic,$Cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_overflow{*}",
+                "alias_name": "> 100kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Entry Size",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 80,
+        "y": 73,
+        "width": 40,
+        "height": 22
+      }
+    },
+    {
+      "id": 15,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_subscription_msg_rate_redeliver{$Topic,$Cluster} by {subscription}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Message Redelivery",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 51,
+        "width": 50,
+        "height": 21
+      }
+    }
+  ],
+  "template_variables": [
+    {
+      "name": "Topic",
+      "default": "*",
+      "prefix": "topic"
+    },
+    {
+      "name": "Cluster",
+      "default": "*",
+      "prefix": "cluster"
+    }
+  ],
+  "layout_type": "free",
+  "is_read_only": false,
+  "notify_list": [],
+  "id": "tp9-5te-3pd"
+}
