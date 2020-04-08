@@ -1,0 +1,820 @@
+{
+  "title": "Pulsar - Messaging",
+  "description": "",
+  "widgets": [
+    {
+      "id": 0,
+      "definition": {
+        "type": "image",
+        "url": "http://pulsar.apache.org/img/pulsar.svg",
+        "sizing": "fit",
+        "margin": "small"
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 19,
+        "height": 7
+      }
+    },
+    {
+      "id": 1,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:pulsar.pulsar_topics_count{$cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Topics",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 7,
+        "width": 19,
+        "height": 11
+      }
+    },
+    {
+      "id": 2,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_producers_count{$cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Producers",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 29,
+        "width": 19,
+        "height": 11
+      }
+    },
+    {
+      "id": 3,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_producers_count{$cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Consumers",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 40,
+        "width": 19,
+        "height": 11
+      }
+    },
+    {
+      "id": 4,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_subscriptions_count{$cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Subscriptions",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 2
+      },
+      "layout": {
+        "x": 0,
+        "y": 18,
+        "width": 19,
+        "height": 11
+      }
+    },
+    {
+      "id": 5,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_storage_size{$cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Storage Size",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 2
+      },
+      "layout": {
+        "x": 0,
+        "y": 62,
+        "width": 19,
+        "height": 11
+      }
+    },
+    {
+      "id": 6,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_msg_backlog{$cluster}",
+            "aggregator": "last"
+          }
+        ],
+        "title": "Backlogs",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 51,
+        "width": 19,
+        "height": 11
+      }
+    },
+    {
+      "id": 7,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_rate_in{$cluster} by {namespace}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Message Rate In(msg/s)",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 7,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 8,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_rate_out{$cluster} by {namespace}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Message Rate Out(msg/s)",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 70,
+        "y": 7,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 9,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_throughput_in{$cluster} by {namespace}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Throughput in",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 20,
+        "y": 29,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 10,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_throughput_out{$cluster} by {namespace}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Throughput out",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 70,
+        "y": 29,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 11,
+      "definition": {
+        "type": "toplist",
+        "requests": [
+          {
+            "q": "top(sum:pulsar.pulsar_msg_backlog{$cluster} by {topic}, 10, 'last', 'desc')"
+          }
+        ],
+        "title": "Topic 10 backlogs",
+        "title_size": "16",
+        "title_align": "left"
+      },
+      "layout": {
+        "x": 0,
+        "y": 74,
+        "width": 60,
+        "height": 33
+      }
+    },
+    {
+      "id": 12,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_5{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_5{$cluster}",
+                "alias_name": "1 - 5 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_10{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_10{$cluster}",
+                "alias_name": "5 - 10 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_20{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_20{$cluster}",
+                "alias_name": "10 - 20 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_50{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_50{$cluster}",
+                "alias_name": "20 - 50 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_100{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_100{$cluster}",
+                "alias_name": "50 - 100 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_200{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_200{$cluster}",
+                "alias_name": "100 - 200 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_1000{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_1000{$cluster}",
+                "alias_name": "200 - 1000 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_overflow{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_overflow{$cluster}",
+                "alias_name": "> 1000 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_0_5{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_0_5{$cluster}",
+                "alias_name": "0 - 0.5 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_storage_write_latency_le_1{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_storage_write_latency_le_1{$cluster}",
+                "alias_name": "0.5 - 1 ms"
+              }
+            ],
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Storage Write",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 0,
+        "y": 108,
+        "width": 40,
+        "height": 22
+      }
+    },
+    {
+      "id": 13,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_topics_count{$cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_subscriptions_count{$cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_producers_count{$cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_consumers_count{$cluster}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Topics - Subscriptions - Producers - Consumers",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false
+      },
+      "layout": {
+        "x": 20,
+        "y": 51,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 14,
+      "definition": {
+        "type": "toplist",
+        "requests": [
+          {
+            "q": "top(sum:pulsar.pulsar_subscription_unacked_messages{$cluster} by {topic}, 10, 'last', 'desc')"
+          }
+        ],
+        "title": "Topic 10 unacked messages",
+        "title_size": "16",
+        "title_align": "left"
+      },
+      "layout": {
+        "x": 60,
+        "y": 74,
+        "width": 60,
+        "height": 33
+      }
+    },
+    {
+      "id": 15,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_msg_backlog{$cluster} by {cluster,namespace}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Backlogs",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true
+      },
+      "layout": {
+        "x": 70,
+        "y": 51,
+        "width": 50,
+        "height": 22
+      }
+    },
+    {
+      "id": 16,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_storage_size{$cluster} by {cluster,namespace}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Storage Size",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 40,
+        "y": 108,
+        "width": 40,
+        "height": 22
+      }
+    },
+    {
+      "id": 17,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_128{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_128{*}",
+                "alias_name": "0 - 128"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_512{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_512{*}",
+                "alias_name": "128 - 512"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_1_kb{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_1_kb{*}",
+                "alias_name": "512 - 1kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_2_kb{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_2_kb{*}",
+                "alias_name": "1kb - 2kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_4_kb{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_4_kb{*}",
+                "alias_name": "2kb - 4kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_16_kb{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_16_kb{*}",
+                "alias_name": "4kb - 16kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_100_kb{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_100_kb{*}",
+                "alias_name": "16kb - 100kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_entry_size_le_overflow{$cluster}",
+            "metadata": [
+              {
+                "expression": "sum:pulsar.pulsar_entry_size_le_overflow{*}",
+                "alias_name": "> 100kb"
+              }
+            ],
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Entry Size",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false
+      },
+      "layout": {
+        "x": 80,
+        "y": 108,
+        "width": 40,
+        "height": 22
+      }
+    },
+    {
+      "id": 18,
+      "definition": {
+        "type": "note",
+        "content": "Messaging Metrics",
+        "background_color": "purple",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 20,
+        "y": 0,
+        "width": 100,
+        "height": 7
+      }
+    }
+  ],
+  "template_variables": [
+    {
+      "name": "cluster",
+      "default": "*",
+      "prefix": "cluster"
+    }
+  ],
+  "layout_type": "free",
+  "is_read_only": false,
+  "notify_list": [],
+  "id": "8vj-cw3-2xv"
+}
