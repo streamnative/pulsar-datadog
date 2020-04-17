@@ -17,12 +17,7 @@ instances:
       jvm_memory_pool_bytes_committed: gauge
       jvm_memory_pool_bytes_max: gauge
       jvm_memory_pool_bytes_init: gauge
-      jvm_memory_direct_bytes_max: gauge
       jvm_memory_direct_bytes_used: gauge
-      jvm_memory_pool_bytes_used: gauge
-      jvm_memory_pool_bytes_committed: gauge
-      jvm_memory_pool_bytes_max: gauge
-      jvm_memory_pool_bytes_init: gauge
       jvm_threads_current: gauge
       jvm_threads_daemon: gauge
       jvm_threads_peak: gauge
