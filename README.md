@@ -12,7 +12,7 @@ The collector configuration files are under the configs directory, you can copy 
 
 #### 3. Import Pulsar dashboards
 
-The Pulsar dashboards JSON files are under the dashboards directory. You can import these dashboards into your dashboard list in the Datadog. Below are screenshots of  dashboards:
+The Pulsar dashboards JSON files are under the dashboards directory. You can import these dashboards(Screen board) into your dashboard list in the Datadog. Below are screenshots of  dashboards:
 
 ##### Overview Dashboard
 
