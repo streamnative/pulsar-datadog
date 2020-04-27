@@ -35,3 +35,7 @@ The Pulsar dashboards JSON files are under the dashboards directory. You can imp
 
 ![Zookeeper](images/Zookeeper.png)
 
+##### Proxy Dashboard
+
+![Proxy](images/Proxy.png)
+
