@@ -1,14 +1,14 @@
 {
-  "title":"Proxy Metrics",
+  "title":"Pulsar - Proxy",
   "description":"",
   "widgets":[
     {
-      "id":3,
+      "id":2,
       "definition":{
         "type":"timeseries",
         "requests":[
           {
-            "q":"avg:pulsar.pulsar_proxy_active_connections{$proxy}",
+            "q":"sum:system.cpu.user{$proxy} by {host}",
             "display_type":"line",
             "style":{
               "palette":"dog_classic",
@@ -18,10 +18,13 @@
           }
         ],
         "yaxis":{
-          "min":"0",
-          "max":"1"
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
         },
-        "title":"Active Connections",
+        "title":"Active Connection",
         "title_size":"16",
         "title_align":"center",
         "time":{
@@ -37,12 +40,12 @@
       }
     },
     {
-      "id":4,
+      "id":3,
       "definition":{
         "type":"timeseries",
         "requests":[
           {
-            "q":"avg:pulsar.pulsar_proxy_new_connections{$proxy}.as_count()",
+            "q":"avg:pulsar.pulsar_proxy_new_connections{$proxy} by {host}.as_rate()",
             "display_type":"line",
             "style":{
               "palette":"dog_classic",
@@ -52,8 +55,11 @@
           }
         ],
         "yaxis":{
-          "min":"0",
-          "max":"1"
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
         },
         "title":"New connections (conn/s)",
         "title_size":"16",
@@ -71,12 +77,12 @@
       }
     },
     {
-      "id":5,
+      "id":4,
       "definition":{
         "type":"timeseries",
         "requests":[
           {
-            "q":"avg:pulsar.pulsar_proxy_rejected_connections{$proxy}.as_count()",
+            "q":"avg:pulsar.pulsar_proxy_rejected_connections{$proxy} by {host}.as_rate()",
             "display_type":"line",
             "style":{
               "palette":"dog_classic",
@@ -86,8 +92,11 @@
           }
         ],
         "yaxis":{
-          "min":"0",
-          "max":"1"
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
         },
         "title":"Rejected connections (conn/s)",
         "title_size":"16",
@@ -105,12 +114,12 @@
       }
     },
     {
-      "id":6,
+      "id":5,
       "definition":{
         "type":"timeseries",
         "requests":[
           {
-            "q":"avg:pulsar.pulsar_proxy_binary_ops{$proxy}.as_count()",
+            "q":"avg:pulsar.pulsar_proxy_binary_ops{$proxy} by {host}.as_rate()",
             "display_type":"line",
             "style":{
               "palette":"dog_classic",
@@ -120,10 +129,13 @@
           }
         ],
         "yaxis":{
-          "min":"-1.0",
-          "max":"1.0"
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
         },
-        "title":"Operations per sec",
+        "title":"Operation per sec",
         "title_size":"16",
         "title_align":"center",
         "time":{
@@ -139,12 +151,12 @@
       }
     },
     {
-      "id":7,
+      "id":6,
       "definition":{
         "type":"timeseries",
         "requests":[
           {
-            "q":"avg:pulsar.pulsar_proxy_binary_ops{$proxy}.as_count()",
+            "q":"avg:pulsar.pulsar_proxy_binary_bytes{$proxy} by {host}.as_rate()",
             "display_type":"line",
             "style":{
               "palette":"dog_classic",
@@ -154,8 +166,11 @@
           }
         ],
         "yaxis":{
-          "min":"-1.0",
-          "max":"1.0"
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
         },
         "title":"Traffic - bytes per sec",
         "title_size":"16",
@@ -173,12 +188,12 @@
       }
     },
     {
-      "id":9,
+      "id":7,
       "definition":{
         "type":"timeseries",
         "requests":[
           {
-            "q":"avg:pulsar.jetty_requests_total{$proxy}.as_count()",
+            "q":"avg:pulsar.jetty_requests_total{$proxy} by {host}.as_rate()",
             "display_type":"line",
             "style":{
               "palette":"dog_classic",
@@ -196,7 +211,7 @@
         },
         "title":"HTTP reqs per sec",
         "title_size":"16",
-        "title_align":"center",
+        "title_align":"left",
         "time":{
 
         },
@@ -205,6 +220,228 @@
       "layout":{
         "x":96,
         "y":16,
+        "width":47,
+        "height":15
+      }
+    },
+    {
+      "id":8,
+      "definition":{
+        "type":"timeseries",
+        "requests":[
+          {
+            "q":"sum:pulsar.pulsar_proxy_lookup_requests{$proxy} by {host}.as_rate()",
+            "display_type":"line",
+            "style":{
+              "palette":"dog_classic",
+              "line_type":"solid",
+              "line_width":"normal"
+            }
+          }
+        ],
+        "yaxis":{
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
+        },
+        "title":"Topic lookups per sec",
+        "title_size":"16",
+        "title_align":"center",
+        "time":{
+
+        },
+        "show_legend":false
+      },
+      "layout":{
+        "x":0,
+        "y":32,
+        "width":47,
+        "height":15
+      }
+    },
+    {
+      "id":9,
+      "definition":{
+        "type":"timeseries",
+        "requests":[
+          {
+            "q":"sum:pulsar.pulsar_proxy_partitions_metadata_requests{$proxy} by {host}.as_rate()",
+            "display_type":"line",
+            "style":{
+              "palette":"dog_classic",
+              "line_type":"solid",
+              "line_width":"normal"
+            }
+          }
+        ],
+        "yaxis":{
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
+        },
+        "title":"GetPartitionsMetadata per sec",
+        "title_size":"16",
+        "title_align":"center",
+        "time":{
+
+        },
+        "show_legend":false
+      },
+      "layout":{
+        "x":48,
+        "y":32,
+        "width":47,
+        "height":15
+      }
+    },
+    {
+      "id":10,
+      "definition":{
+        "type":"timeseries",
+        "requests":[
+          {
+            "q":"sum:pulsar.pulsar_proxy_get_topics_of_namespace_requests{$proxy} by {host}.as_rate()",
+            "display_type":"line",
+            "style":{
+              "palette":"dog_classic",
+              "line_type":"solid",
+              "line_width":"normal"
+            }
+          }
+        ],
+        "yaxis":{
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
+        },
+        "title":"GetNamespaceTopics per sec",
+        "title_size":"16",
+        "title_align":"center",
+        "time":{
+
+        },
+        "show_legend":false
+      },
+      "layout":{
+        "x":96,
+        "y":32,
+        "width":47,
+        "height":15
+      }
+    },
+    {
+      "id":11,
+      "definition":{
+        "type":"timeseries",
+        "requests":[
+          {
+            "q":"sum:pulsar.pulsar_proxy_rejected_lookup_requests{$proxy} by {host}.as_rate()",
+            "display_type":"line",
+            "style":{
+              "palette":"dog_classic",
+              "line_type":"solid",
+              "line_width":"normal"
+            }
+          }
+        ],
+        "yaxis":{
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
+        },
+        "title":"Lookups rejected per sec",
+        "title_size":"16",
+        "title_align":"center",
+        "time":{
+
+        },
+        "show_legend":false
+      },
+      "layout":{
+        "x":0,
+        "y":48,
+        "width":47,
+        "height":15
+      }
+    },
+    {
+      "id":12,
+      "definition":{
+        "type":"timeseries",
+        "requests":[
+          {
+            "q":"sum:pulsar.pulsar_proxy_rejected_partitions_metadata_requests{$proxy} by {host}.as_rate()",
+            "display_type":"line",
+            "style":{
+              "palette":"dog_classic",
+              "line_type":"solid",
+              "line_width":"normal"
+            }
+          }
+        ],
+        "yaxis":{
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
+        },
+        "title":"Partitions requests rejected per sec",
+        "title_size":"16",
+        "title_align":"center",
+        "time":{
+
+        },
+        "show_legend":false
+      },
+      "layout":{
+        "x":48,
+        "y":48,
+        "width":47,
+        "height":15
+      }
+    },
+    {
+      "id":13,
+      "definition":{
+        "type":"timeseries",
+        "requests":[
+          {
+            "q":"sum:pulsar.pulsar_proxy_rejected_get_topics_of_namespace_requests{$proxy} by {host}.as_rate()",
+            "display_type":"line",
+            "style":{
+              "palette":"dog_classic",
+              "line_type":"solid",
+              "line_width":"normal"
+            }
+          }
+        ],
+        "yaxis":{
+          "label":"",
+          "scale":"linear",
+          "min":"auto",
+          "max":"auto",
+          "include_zero":true
+        },
+        "title":"GetNamespaceTopics requests rejected per sec",
+        "title_size":"16",
+        "title_align":"center",
+        "time":{
+
+        },
+        "show_legend":false
+      },
+      "layout":{
+        "x":96,
+        "y":48,
         "width":47,
         "height":15
       }
@@ -222,5 +459,5 @@
   "notify_list":[
 
   ],
-  "id":"59c-5vf-9bj"
+  "id":"faf-ga3-r2h"
 }
