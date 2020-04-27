@@ -1,0 +1,12 @@
+init_config:
+
+instances:
+  - prometheus_url: http://127.0.0.1:8080/metrics/
+    namespace: "pulsar"
+    metrics:
+      - _*
+    health_service_check: true
+    prometheus_timeout: 1000
+    max_returned_metrics: 1000000
+    tags:
+      - pulsar-broker: <your-proxy-id>
