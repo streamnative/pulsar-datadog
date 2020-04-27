@@ -1,0 +1,589 @@
+{
+  "title": "Pulsar - Zookeeper",
+  "description": "",
+  "widgets": [
+    {
+      "id": 0,
+      "definition": {
+        "type": "note",
+        "content": "Zookeeper Metrics",
+        "background_color": "green",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 19,
+        "y": 0,
+        "width": 48,
+        "height": 7
+      }
+    },
+    {
+      "id": 1,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:pulsar.zookeeper_server_connections{$zookeeper}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Connections",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 2
+      },
+      "layout": {
+        "x": 0,
+        "y": 8,
+        "width": 18,
+        "height": 11
+      }
+    },
+    {
+      "id": 2,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:pulsar.zookeeper_server_znode_count{$zookeeper}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "znodes",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 19,
+        "width": 18,
+        "height": 12
+      }
+    },
+    {
+      "id": 3,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:pulsar.zookeeper_server_watches_count{$zookeeper}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Watchers",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 31,
+        "width": 18,
+        "height": 12
+      }
+    },
+    {
+      "id": 4,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:pulsar.zookeeper_server_ephemerals_count{$zookeeper}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Ephemerals",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 43,
+        "width": 18,
+        "height": 13
+      }
+    },
+    {
+      "id": 5,
+      "definition": {
+        "type": "query_value",
+        "requests": [
+          {
+            "q": "avg:pulsar.zookeeper_server_data_size_bytes{$zookeeper}",
+            "aggregator": "avg"
+          }
+        ],
+        "title": "Data Size",
+        "title_size": "16",
+        "title_align": "left",
+        "autoscale": true,
+        "precision": 0
+      },
+      "layout": {
+        "x": 0,
+        "y": 56,
+        "width": 18,
+        "height": 13
+      }
+    },
+    {
+      "id": 6,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.zookeeper_server_requests{$zookeeper} by {type,kubernetes_pod_name}.as_count()",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Requests",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 19,
+        "y": 7,
+        "width": 48,
+        "height": 21
+      }
+    },
+    {
+      "id": 7,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.zookeeper_server_requests_latency_ms.quantile{type:write,$zookeeper} by {quantile,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Write Latency",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 19,
+        "y": 28,
+        "width": 48,
+        "height": 20
+      }
+    },
+    {
+      "id": 8,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "max:pulsar.zookeeper_server_requests_latency_ms.quantile{type:read,$zookeeper} by {quantile,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Read Latency",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 19,
+        "y": 48,
+        "width": 48,
+        "height": 21
+      }
+    },
+    {
+      "id": 9,
+      "definition": {
+        "type": "note",
+        "content": "JVM Metrics",
+        "background_color": "pink",
+        "font_size": "18",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 68,
+        "y": 0,
+        "width": 86,
+        "height": 7
+      }
+    },
+    {
+      "id": 10,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_max{area:heap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_init{area:heap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_used{area:heap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_committed{area:heap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Heap memory",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 68,
+        "y": 7,
+        "width": 41,
+        "height": 21
+      }
+    },
+    {
+      "id": 11,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_max{area:nonheap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_init{area:nonheap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_used{area:nonheap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_memory_bytes_committed{area:nonheap,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Non-Heap memory",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 109,
+        "y": 7,
+        "width": 45,
+        "height": 21
+      }
+    },
+    {
+      "id": 12,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_buffer_pool_used_bytes{pool:direct,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_buffer_pool_used_buffers{pool:direct,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_buffer_pool_capacity_bytes{pool:direct,$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Direct pool",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 68,
+        "y": 28,
+        "width": 41,
+        "height": 20
+      }
+    },
+    {
+      "id": 13,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.jvm_threads_peak{$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_daemon{$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_current{$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_deadlocked{$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_started_total{$zookeeper} by {kubernetes_pod_name}.as_count()",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.jvm_threads_deadlocked_monitor{$zookeeper} by {kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Threads",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 68,
+        "y": 48,
+        "width": 41,
+        "height": 21
+      }
+    },
+    {
+      "id": 14,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "per_minute(sum:pulsar.jvm_gc_collection_seconds.sum{$zookeeper} by {gc,kubernetes_pod_name})",
+            "display_type": "area",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "GC",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "auto"
+      },
+      "layout": {
+        "x": 109,
+        "y": 28,
+        "width": 45,
+        "height": 20
+      }
+    },
+    {
+      "id": 15,
+      "definition": {
+        "type": "image",
+        "url": "/static/images/saas_logos/bot/zookeeper.png",
+        "sizing": "fit"
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 18,
+        "height": 8
+      }
+    }
+  ],
+  "template_variables": [
+    {
+      "name": "zookeeper",
+      "default": "*",
+      "prefix": "pulsar-zookeeper"
+    }
+  ],
+  "layout_type": "free",
+  "is_read_only": false,
+  "notify_list": [],
+  "id": "5yk-3vj-cr8"
+}
