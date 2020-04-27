@@ -1,0 +1,206 @@
+{
+  "title": "Pulsar - Overview",
+  "description": "",
+  "widgets": [
+    {
+      "id": 0,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_rate_in{*} by {cluster,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_rate_out{*} by {cluster,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Message Rate",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true
+      },
+      "layout": {
+        "x": 1,
+        "y": 8,
+        "width": 49,
+        "height": 22
+      }
+    },
+    {
+      "id": 1,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_throughput_in{*} by {cluster,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          },
+          {
+            "q": "sum:pulsar.pulsar_throughput_out{*} by {cluster,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Throughput",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 51,
+        "y": 8,
+        "width": 49,
+        "height": 22
+      }
+    },
+    {
+      "id": 2,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_msg_backlog{*} by {cluster,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Backlogs",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 1,
+        "y": 31,
+        "width": 49,
+        "height": 22
+      }
+    },
+    {
+      "id": 3,
+      "definition": {
+        "type": "timeseries",
+        "requests": [
+          {
+            "q": "sum:pulsar.pulsar_storage_size{*} by {cluster,kubernetes_pod_name}",
+            "display_type": "line",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            }
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "min": "auto",
+          "max": "auto",
+          "include_zero": true
+        },
+        "title": "Storage Size",
+        "title_size": "16",
+        "title_align": "left",
+        "time": {},
+        "show_legend": true,
+        "legend_size": "0"
+      },
+      "layout": {
+        "x": 51,
+        "y": 31,
+        "width": 49,
+        "height": 22
+      }
+    },
+    {
+      "id": 4,
+      "definition": {
+        "type": "note",
+        "content": "Clusters Overview",
+        "background_color": "blue",
+        "font_size": "14",
+        "text_align": "center",
+        "show_tick": false,
+        "tick_pos": "50%",
+        "tick_edge": "left"
+      },
+      "layout": {
+        "x": 20,
+        "y": 0,
+        "width": 80,
+        "height": 7
+      }
+    },
+    {
+      "id": 5,
+      "definition": {
+        "type": "image",
+        "url": "http://pulsar.apache.org/img/pulsar.svg",
+        "sizing": "fit",
+        "margin": "small"
+      },
+      "layout": {
+        "x": 1,
+        "y": 0,
+        "width": 19,
+        "height": 7
+      }
+    }
+  ],
+  "template_variables": [],
+  "layout_type": "free",
+  "is_read_only": false,
+  "notify_list": [],
+  "id": "gk4-i8d-yaq"
+}
